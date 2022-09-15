@@ -13,6 +13,7 @@ jobs:
     
     - run: go test
     - run: go run math.go
+    
   # check-application:
   #   runs-on: ubuntu-latest
   #   steps:
