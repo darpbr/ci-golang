@@ -4,9 +4,11 @@ on:
     branches:
       - develop
 
-
+strategy:
+  matrix:
+    go: ['1.18','1.19']
 jobs:
-  build:
+  check-application:
     runs-on: ubuntu-latest
     strategy:
       matrix:
