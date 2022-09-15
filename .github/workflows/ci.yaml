@@ -8,25 +8,20 @@ on:
 jobs:
   check-application:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ['1.18','1.19']
+
     steps:
     - uses: actions/checkout@v3
 
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.18
+        go-version: ${{ matrix.go }}
     
     - run: go run math.go
 
     - run: go test
     
 
-  # check-application:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #       uses: actions/checkout@v3
-  #       uses: actions/setup-go@v3
-  #       with:
-  #         go-version: '1.19.1'
-  #     - run: go test
-  #     - run: go run math.go
