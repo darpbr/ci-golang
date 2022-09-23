@@ -20,7 +20,7 @@ jobs:
     
     - run: go run math.go
 
-    - run: go test
+    - run: go test -coverprofile=coverage.out
 
     # https://github.com/docker/setup-qemu-action
     - name: Set up QEMU
@@ -41,3 +41,9 @@ jobs:
       with:
         push: true
         tags: darpbr/ci-golang:latest
+
+    - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
